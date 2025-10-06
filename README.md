@@ -2,7 +2,8 @@
 
 A sleek, modern web application that automatically detects the language of text as you type. Built with a Node.js & Express backend API and a dynamic vanilla JavaScript frontend, this project showcases a clean client-server architecture and a stylish, responsive UI featuring a "glassmorphism" design with an animated gradient background.
 
-![Language Detector Screenshot](https://i.imgur.com/7gqQ7oK.png)
+![Chatbot Demo](https://raw.githubusercontent.com/Sadikn7i/Real-Time-Language-Detector/master/detector.png)
+
 
 ---
 
