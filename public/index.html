@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Language Detector</title>
+    <script src="script.js" defer></script>
+ <style>
+    :root {
+        --surface-color: rgba(31, 41, 55, 0.5);  /* Semi-transparent surface */
+        --primary-color: #A5B4FC; /* Lighter Indigo for better contrast */
+        --text-color: #F9FAFB;     /* Off-white */
+        --border-color: rgba(255, 255, 255, 0.1); /* Subtle white border */
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        /* The new animated gradient background */
+        background: linear-gradient(135deg, #020617, #1e293b, #475569);
+        background-size: 400% 400%;
+        animation: gradientAnimation 15s ease infinite;
+
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        overflow: hidden; /* Prevents scrollbars from the large gradient */
+    }
+
+    /* Keyframes for the background animation */
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    main {
+        width: 90%;
+        max-width: 500px;
+        
+        /* This is the "Glassmorphism" effect */
+        background: var(--surface-color);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px); /* For Safari */
+        
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 2.5rem;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    h1 {
+        text-align: center;
+        color: var(--text-color);
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    p { 
+        text-align: center; 
+        margin-top: 0; 
+        opacity: 0.8; 
+    }
+
+    textarea {
+        width: 100%;
+        box-sizing: border-box;
+        background: rgba(17, 24, 39, 0.7); /* Darker transparent background */
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        resize: vertical;
+        min-height: 120px;
+        margin-top: 1.5rem;
+        transition: all 0.2s ease-in-out;
+    }
+
+    textarea:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.3);
+        outline: none;
+    }
+
+    button {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #020617;
+        background-color: var(--primary-color);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: all 0.2s ease-in-out;
+    }
+
+    button:hover { 
+        transform: scale(1.02);
+        filter: brightness(1.1);
+    }
+
+    #result {
+        margin-top: 2rem;
+        padding: 1rem;
+        background: rgba(17, 24, 39, 0.7);
+        border-left: 4px solid var(--primary-color);
+        border-radius: 4px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        word-wrap: break-word; /* Prevents long text from overflowing */
+    }
+
+    #result.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    #char-counter {
+        text-align: right;
+        font-size: 0.8rem;
+        opacity: 0.7;
+        margin-top: 0.5rem;
+    }
+
+    .spinner {
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: var(--primary-color);
+        animation: spin 1s ease-in-out infinite;
+        margin: 0 auto;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+</style>
+</head>
+<body>
+    <main>
+    <h1>Language Detector</h1>
+    <p>Real-time analysis using Node.js & Express</p>
+    
+    <form id="lang-form">
+        <textarea name="text" placeholder="Type or paste text here..."></textarea>
+        
+        <div id="char-counter" style="text-align: right; font-size: 0.8rem; opacity: 0.6; margin-top: 0.5rem;">0 characters</div>
+        
+        <button type="submit">Analyze</button>
+    </form>
+
+    <div id="result"></div>
+</main>
+</body>
+</html>
